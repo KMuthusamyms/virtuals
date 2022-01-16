@@ -2,6 +2,7 @@
   "name": "cesium-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kmuthusamyms.github.io/virtuals",
   "dependencies": {
     "@craco/craco": "^6.4.2",
     "@hot-loader/react-dom": "^17.0.1",
@@ -21,6 +22,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -43,5 +46,6 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
