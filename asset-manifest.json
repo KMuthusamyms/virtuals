@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/virtuals/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/virtuals/static/js/main.397f81d2.chunk.js",
-    "main.js.map": "/virtuals/static/js/main.397f81d2.chunk.js.map",
+    "main.js": "/virtuals/static/js/main.5740bc85.chunk.js",
+    "main.js.map": "/virtuals/static/js/main.5740bc85.chunk.js.map",
     "runtime-main.js": "/virtuals/static/js/runtime-main.fdce86bb.js",
     "runtime-main.js.map": "/virtuals/static/js/runtime-main.fdce86bb.js.map",
-    "static/js/2.44010c7c.chunk.js": "/virtuals/static/js/2.44010c7c.chunk.js",
-    "static/js/2.44010c7c.chunk.js.map": "/virtuals/static/js/2.44010c7c.chunk.js.map",
+    "static/js/2.f22b0a43.chunk.js": "/virtuals/static/js/2.f22b0a43.chunk.js",
+    "static/js/2.f22b0a43.chunk.js.map": "/virtuals/static/js/2.f22b0a43.chunk.js.map",
     "cesium/Assets/IAU2006_XYS/IAU2006_XYS_0.json": "/virtuals/cesium/Assets/IAU2006_XYS/IAU2006_XYS_0.json",
     "cesium/Assets/IAU2006_XYS/IAU2006_XYS_1.json": "/virtuals/cesium/Assets/IAU2006_XYS/IAU2006_XYS_1.json",
     "cesium/Assets/IAU2006_XYS/IAU2006_XYS_10.json": "/virtuals/cesium/Assets/IAU2006_XYS/IAU2006_XYS_10.json",
@@ -377,12 +377,12 @@
     "cesium/Workers/when-4bbc8319.js": "/virtuals/cesium/Workers/when-4bbc8319.js",
     "index.html": "/virtuals/index.html",
     "static/css/main.6dea0f05.chunk.css.map": "/virtuals/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.44010c7c.chunk.js.LICENSE.txt": "/virtuals/static/js/2.44010c7c.chunk.js.LICENSE.txt"
+    "static/js/2.f22b0a43.chunk.js.LICENSE.txt": "/virtuals/static/js/2.f22b0a43.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fdce86bb.js",
-    "static/js/2.44010c7c.chunk.js",
+    "static/js/2.f22b0a43.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.397f81d2.chunk.js"
+    "static/js/main.5740bc85.chunk.js"
   ]
 }
