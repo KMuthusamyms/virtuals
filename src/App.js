@@ -12,6 +12,7 @@ import {
   PathGraphics,
   VelocityOrientationProperty,
   PolylineGlowMaterialProperty,
+  IonResource,
 } from "cesium";
 import { Viewer } from "resium";
 import { flightData } from "./utils/consts";
@@ -54,33 +55,33 @@ function App() {
           position: position,
           point: {
             pixelSize: 10,
-            color: Color.TRANSPARENT,
-            outlineColor: Color.RED,
-            outlineWidth: 2,
+            color: Color.RED,
           },
         });
       }
 
-      const airplaneEntity = viewer.entities.add({
-        availability: new TimeIntervalCollection([
-          new TimeInterval({ start: start, stop: stop }),
-        ]),
-        position: positionProperty,
-        model: {
-          uri: "https://s3.amazonaws.com/cesiumjs/downloads/Cesium_Air.glb",
-        },
-        orientation: new VelocityOrientationProperty(positionProperty),
-        path: new PathGraphics({
-          resolution: 4,
-          material: new PolylineGlowMaterialProperty({
-            glowPower: 0.5,
-            color: Color.YELLOW,
+      IonResource.fromAssetId(151483).then(function (resource) {
+        const airplaneEntity = viewer.entities.add({
+          availability: new TimeIntervalCollection([
+            new TimeInterval({ start: start, stop: stop }),
+          ]),
+          position: positionProperty,
+          model: {
+            uri: resource,
+          },
+          orientation: new VelocityOrientationProperty(positionProperty),
+          path: new PathGraphics({
+            // resolution: 4,
+            material: new PolylineGlowMaterialProperty({
+              glowPower: 0.5,
+              color: Color.GREENYELLOW,
+            }),
+            width: 3,
           }),
-          width: 3,
-        }),
-      });
+        });
 
-      viewer.trackedEntity = airplaneEntity;
+        viewer.trackedEntity = airplaneEntity;
+      });
     }
   }, [start, stop]);
 
