@@ -17494,9 +17494,9 @@ export enum WindingOrder {
  * @param p1 - The second point of the triangle, corresponding to the barycentric y-axis.
  * @param p2 - The third point of the triangle, corresponding to the barycentric z-axis.
  * @param [result] - The object onto which to store the result.
- * @returns The modified result parameter or a new Cartesian3 instance if one was not provided. If the triangle is degenerate the function will return undefined.
+ * @returns The modified result parameter or a new Cartesian3 instance if one was not provided.
  */
-export function barycentricCoordinates(point: Cartesian2 | Cartesian3, p0: Cartesian2 | Cartesian3, p1: Cartesian2 | Cartesian3, p2: Cartesian2 | Cartesian3, result?: Cartesian3): Cartesian3 | undefined;
+export function barycentricCoordinates(point: Cartesian2 | Cartesian3, p0: Cartesian2 | Cartesian3, p1: Cartesian2 | Cartesian3, p2: Cartesian2 | Cartesian3, result?: Cartesian3): Cartesian3;
 
 /**
  * Finds an item in a sorted array.
@@ -21087,7 +21087,7 @@ export namespace KmlDataSource {
  * KML support in Cesium is incomplete, but a large amount of the standard,
  * as well as Google's <code>gx</code> extension namespace, is supported. See Github issue
  * {@link https://github.com/CesiumGS/cesium/issues/873|#873} for a
- * detailed list of what is and isn't supported. Cesium will also write information to the
+ * detailed list of what is and isn't support. Cesium will also write information to the
  * console when it encounters most unsupported features.
  * </p>
  * <p>
@@ -26867,7 +26867,7 @@ export class Cesium3DTileFeature {
      *   <li>Otherwise, return undefined</li>
      * </ol>
      * <p>
-     * For 3D Tiles Next details, see the {@link https://github.com/CesiumGS/3d-tiles/tree/main/extensions/3DTILES_metadata|3DTILES_metadata Extension}
+     * For 3D Tiles Next details, see the {@link https://github.com/CesiumGS/3d-tiles/tree/3d-tiles-next/extensions/3DTILES_metadata|3DTILES_metadata Extension}
      * for 3D Tiles, as well as the {@link https://github.com/CesiumGS/glTF/tree/3d-tiles-next/extensions/2.0/Vendor/EXT_mesh_features|EXT_mesh_features Extension}
      * for glTF. For the legacy glTF extension, see {@link https://github.com/CesiumGS/glTF/tree/3d-tiles-next/extensions/2.0/Vendor/EXT_feature_metadata|EXT_feature_metadata Extension}
      * </p>
@@ -28379,14 +28379,6 @@ export class Cesium3DTileset {
      */
     examineVectorLinesFunction: (...params: any[]) => any;
     /**
-     * If true, {@link ModelExperimental} will be used instead of {@link Model}
-     * for each tile with a glTF or 3D Tiles 1.0 content (where applicable).
-     * <p>
-     * The value defaults to {@link ExperimentalFeatures.enableModelExperimental}.
-     * </p>
-     */
-    enableModelExperimental: boolean;
-    /**
      * Gets the tileset's asset object property, which contains metadata about the tileset.
      * <p>
      * See the {@link https://github.com/CesiumGS/3d-tiles/tree/main/specification#reference-asset|asset schema reference}
@@ -28490,7 +28482,7 @@ export class Cesium3DTileset {
      * contents that use {@link ModelExperimental}. Using custom shaders with a
      * {@link Cesium3DTileStyle} may lead to undefined behavior.
      * <p>
-     * To enable {@link ModelExperimental}, set {@link ExperimentalFeatures.enableModelExperimental} or tileset.enableModelExperimental to <code>true</code>.
+     * To enable {@link ModelExperimental}, set {@link ExperimentalFeatures.enableModelExperimental} to <code>true</code>.
      * </p>
      */
     customShader: CustomShader | undefined;
@@ -29503,10 +29495,6 @@ export class CumulusCloud {
      */
     maximumSize: Cartesian3;
     /**
-     * Sets the color of the cloud
-     */
-    color: Color;
-    /**
      * <p>Gets or sets the "slice" of the cloud that is rendered on the billboard, i.e.
      * the specific cross-section of the cloud chosen for the billboard's appearance.
      * Given a value between 0 and 1, the slice specifies how deeply into the cloud
@@ -30296,12 +30284,6 @@ export class Globe {
      * Enable lighting the globe with the scene's light source.
      */
     enableLighting: boolean;
-    /**
-     * A multiplier to adjust terrain lambert lighting.
-     * This number is multiplied by the result of <code>czm_getLambertDiffuse</code> in GlobeFS.glsl.
-     * This only takes effect when <code>enableLighting</code> is <code>true</code>.
-     */
-    lambertDiffuseMultiplier: number;
     /**
      * Enable dynamic lighting effects on atmosphere and fog. This only takes effect
      * when <code>enableLighting</code> is <code>true</code>.
@@ -34839,7 +34821,7 @@ export type UniformSpecifier = {
  *   </li>
  * </ul>
  * <p>
- * To enable the use of {@link ModelExperimental} in {@link Cesium3DTileset}, set {@link ExperimentalFeatures.enableModelExperimental} to <code>true</code> or tileset.enableModelExperimental to <code>true</code>.
+ * To enable the use of {@link ModelExperimental} in {@link Cesium3DTileset}, set {@link ExperimentalFeatures.enableModelExperimental} to <code>true</code>.
  * </p>
  * @example
  * var customShader = new CustomShader({
@@ -34859,9 +34841,9 @@ export type UniformSpecifier = {
  *     v_selectedColor: Cesium.VaryingType.VEC3
  *   },
  *   vertexShaderText: `
- *   void vertexMain(VertexInput vsInput, inout czm_modelVertexOutput vsOutput) {
+ *   void vertexMain(VertexInput vsInput, inout vec3 position) {
  *     v_selectedColor = mix(vsInput.attributes.color_0, vsInput.attributes.color_1, u_colorIndex);
- *     vsOutput.positionMC += 0.1 * vsInput.attributes.normal;
+ *     position += 0.1 * vsInput.attributes.normal;
  *   }
  *   `,
  *   fragmentShaderText: `
@@ -38081,6 +38063,13 @@ export class Scene {
     /**
      * This property is for debugging only; it is not for production use.
      * <p>
+     * Displays depth information for the indicated frustum.
+     * </p>
+     */
+    debugShowGlobeDepth: boolean;
+    /**
+     * This property is for debugging only; it is not for production use.
+     * <p>
      * Indicates which frustum will have depth information displayed.
      * </p>
      */
@@ -40291,16 +40280,6 @@ export class ViewportQuad {
     destroy(): void;
 }
 
-/**
- * EPSG codes known to include reverse axis orders, but are not within 4000-5000.
- */
-export var includesReverseAxis: number[];
-
-/**
- * EPSG codes known to not include reverse axis orders, and are within 4000-5000.
- */
-export var excludesReverseAxis: number[];
-
 export namespace WebMapServiceImageryProvider {
     /**
      * Initialization options for the WebMapServiceImageryProvider constructor
@@ -40336,7 +40315,6 @@ export namespace WebMapServiceImageryProvider {
      *                          an array, each element in the array is a subdomain.
      * @property [clock] - A Clock instance that is used when determining the value for the time dimension. Required when `times` is specified.
      * @property [times] - TimeIntervalCollection with its data property being an object containing time dynamic dimension and their values.
-     * @property [getFeatureInfoUrl] - The getFeatureInfo URL of the WMS service. If the property is not defined then we use the property value of url.
      */
     type ConstructorOptions = {
         url: Resource | string;
@@ -40358,7 +40336,6 @@ export namespace WebMapServiceImageryProvider {
         subdomains?: string | string[];
         clock?: Clock;
         times?: TimeIntervalCollection;
-        getFeatureInfoUrl?: Resource | string;
     };
 }
 
@@ -40516,10 +40493,6 @@ export class WebMapServiceImageryProvider {
      * tile requests.
      */
     times: TimeIntervalCollection;
-    /**
-     * Gets the getFeatureInfo URL of the WMS server.
-     */
-    readonly getFeatureInfoUrl: Resource | string;
     /**
      * Gets the credits to be displayed when a given tile is displayed.
      * @param x - The tile X coordinate.
@@ -41764,6 +41737,14 @@ export class CesiumInspectorViewModel {
      * Gets or sets the show wireframe state.  This property is observable.
      */
     wireframe: boolean;
+    /**
+     * Gets or sets the show globe depth state.  This property is observable.
+     */
+    globeDepth: boolean;
+    /**
+     * Gets or sets the show pick depth state.  This property is observable.
+     */
+    pickDepth: boolean;
     /**
      * Gets or sets the index of the depth frustum to display.  This property is observable.
      */
